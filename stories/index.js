@@ -9,6 +9,8 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+
+//Button
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -25,6 +27,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
+//DayListItem
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -95,11 +98,16 @@ storiesOf("InterviewerListItem", module)
     />
   ))
   .add("Clickable", () => (
+    // <InterviewerListItem
+    //   id={interviewer.id}
+    //   name={interviewer.name}
+    //   avatar={interviewer.avatar}
+    //   setInterviewer={action("setInterviewer")}
+    // />
     <InterviewerListItem
-      id={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
+      setInterviewer={() => action("setInterviewer")(interviewer.id)}
     />
   ));
 

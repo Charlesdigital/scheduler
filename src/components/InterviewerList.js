@@ -7,10 +7,12 @@ function InterviewerList(props) {
     return (
       <InterviewerListItem
         key={interviewer.id}
+        // interviewerId={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        selected={interviewer.id === props.value}
-        setInterviewer={(event) => props.onChange(interviewer.id)}
+        selected={interviewer.id === props.interviewer}
+        // setInterviewer={() => props.onChange(interviewer.id)}
+        setInterviewer={props.setInterviewer}
       />
     );
   });
@@ -23,3 +25,12 @@ function InterviewerList(props) {
 }
 
 export default InterviewerList;
+
+// .add("Clickable", () => (
+//     <InterviewerList
+//       interviewers={interviewers}
+//       setInterviewer={action("setInterviewer")}
+//     />
+//   ));
+
+//passing down the key interviewers and setInterviewer to the children, where they get access to the value
