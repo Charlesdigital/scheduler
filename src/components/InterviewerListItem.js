@@ -8,7 +8,7 @@ function InterviewerListItem(props) {
     "interviewers__item--selected": props.selected,
   });
   return (
-    <li className={interviewerClass}>
+    <li className={interviewerClass} onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
         src={props.avatar}
@@ -20,3 +20,5 @@ function InterviewerListItem(props) {
 }
 
 export default InterviewerListItem;
+//can use destructuring to remove props
+//const { name, avatar, selected, setInterviewer } = props;

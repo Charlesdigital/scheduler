@@ -8,7 +8,7 @@ import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
-
+import InterviewerList from "components/InterviewerList";
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -74,6 +74,7 @@ const interviewer = {
   avatar: "https://i.imgur.com/LpaY82x.png",
 };
 
+//InterviewerListItem
 storiesOf("InterviewerListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
