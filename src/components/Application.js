@@ -5,7 +5,11 @@ import axios from "axios";
 import Appointment from "components/Appointment/";
 import "components/Application.scss";
 
-const appointments = [
+// "GET_DAYS":     http://localhost:8001/api/days,
+// "GET_APPOINTMENTS": http://localhost:8001/api/appointments,
+// "GET_INTERVIEWERS": http://localhost:8001/api/interviewers,
+
+const initialAppointments = [
   {
     id: 1,
     time: "12pm",
@@ -44,34 +48,59 @@ const appointments = [
   },
 ];
 
-// const days = [
-//   {
-//     id: 1,
-//     name: "Monday",
-//     spots: 2,
-//   },
-//   {
-//     id: 2,
-//     name: "Tuesday",
-//     spots: 5,
-//   },
-//   {
-//     id: 3,
-//     name: "Wednesday",
-//     spots: 0,
-//   },
-// ];
+const initialDaysValue = [
+  {
+    id: 1,
+    name: "Monday",
+    spots: 2,
+  },
+  {
+    id: 2,
+    name: "Tuesday",
+    spots: 5,
+  },
+  {
+    id: 3,
+    name: "Wednesday",
+    spots: 0,
+  },
+];
 export default function Application(props) {
-  const [days, setDays] = useState([]);
-  console.log(days);
+  // const [day, setDay] = useState("Monday");
+  // const [days, setDays] = useState(initialDaysValue);
+  // const [appointments, setAppointments] = useState(initialAppointments);
+
+  const [state, setState] = useState({
+    day: "Monday",
+    days: initialDaysValue,
+    // you may put the line below, but will have to remove/comment hardcoded appointments variable
+    appointments: initialAppointments,
+  });
 
   useEffect(() => {
-    axios.get("http://localhost:8001/api/days").then((response) => {
+    axios.get("/api/days").then((response) => {
       setDays(response.data);
       console.log("test3", response.data);
     });
   }, []);
-  const eachAppointment = appointments.map((appointment) => {
+
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get("GET_DAYS"),
+  //     axios.get("GET_APPOINTMENTS"),
+  //     axios.get("GET_INTERVIEWERS"),
+  //   ]).then((all) => {
+  //     console.log("test4",all[0]); // first
+  //     console.log("test5",all[1]); // second
+  //     console.log("test6",all[2]); // third
+
+  //     const [first, second, third] = all;
+
+  //     console.log(first, second, third);
+  //   });
+  // }, []);
+
+  const eachAppointment = state.appointments.map((appointment) => {
     return (
       <Appointment
         key={appointment.id}
@@ -96,9 +125,9 @@ export default function Application(props) {
             // days={days}
             // day={"Monday"}
             // setDay={(day) => console.log(day)}
-            days={days}
-            day={days}
-            setDay={setDays}
+            days={state.days}
+            currentDay={state.day}
+            setDay={(day) => setState({ ...state, day })}
           />
         </nav>
         <img
