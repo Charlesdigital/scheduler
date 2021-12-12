@@ -107,10 +107,7 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-        {eachAppointment}
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-      </section>
+      <section className="schedule">{eachAppointment}</section>
     </main>
   );
 }
