@@ -1,8 +1,8 @@
 import DayList from "components/DayList";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import "components/Appointment";
+// don't have to have index at the end as it is the default, always point to a file not a folder
+import Appointment from "components/Appointment/";
 import "components/Application.scss";
 
 const appointments = [
@@ -63,14 +63,24 @@ const appointments = [
 // ];
 export default function Application(props) {
   const [days, setDays] = useState([]);
-  console.log(day);
+  console.log(days);
 
   useEffect(() => {
     axios.get("http://localhost:8001/api/days").then((response) => {
       setDays(response.data);
+      console.log("test3", response.data);
     });
   }, []);
-
+  const eachAppointment = appointments.map((appointment) => {
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={appointment.interview}
+      />
+    );
+  });
   return (
     <main className="layout">
       <section className="sidebar">
@@ -81,13 +91,14 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
+          {/* DayListItem is a child of DayList */}
           <DayList
             // days={days}
             // day={"Monday"}
             // setDay={(day) => console.log(day)}
             days={days}
-            day={day}
-            setDay={setDay}
+            day={days}
+            setDay={setDays}
           />
         </nav>
         <img
@@ -97,6 +108,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
+        {eachAppointment}
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
       </section>
     </main>
