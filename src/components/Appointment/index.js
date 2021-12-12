@@ -5,7 +5,7 @@ import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 
 function Appointment(props) {
-  console.log("test2", props.interviewer);
+  //   console.log("test2", props.interviewer);
   //if there's an interview key return show
   const checkInterview = function (interview) {
     if (interview) {
