@@ -5,7 +5,6 @@ import axios from "axios";
 import Appointment from "components/Appointment/";
 import "components/Application.scss";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
-
 // const initialAppointments = [
 //   {
 //     id: 1,
