@@ -4,11 +4,7 @@ import axios from "axios";
 // don't have to have index at the end as it is the default, always point to a file not a folder
 import Appointment from "components/Appointment/";
 import "components/Application.scss";
-import { getAppointmentsForDay } from "helpers/selectors";
-
-// "GET_DAYS":     http://localhost:8001/api/days,
-// "GET_APPOINTMENTS": http://localhost:8001/api/appointments,
-// "GET_INTERVIEWERS": http://localhost:8001/api/interviewers,
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 // const initialAppointments = [
 //   {
@@ -110,12 +106,15 @@ export default function Application(props) {
   const currentDayAppointments = getAppointmentsForDay(state, state.day);
 
   const eachAppointment = currentDayAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    console.log("test8", interview);
+
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
-        interview={appointment.interview}
+        interview={interview}
       />
     );
   });
