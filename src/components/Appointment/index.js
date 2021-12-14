@@ -28,7 +28,10 @@ function Appointment(props) {
       interviewer
     };
 
-    props.bookInterview(props.id, interview).then(() => transition(SHOW))
+    transition(SAVING)
+    props.bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+
   }
 
   //   console.log("test2", props.interviewer);
@@ -58,6 +61,12 @@ function Appointment(props) {
       )}
       {mode === CREATE && (
         <Form interviewers={props.interviewers} onCancel={back} onSave={save} />
+      )}
+
+      {mode === SAVING && (
+        <Status
+          message="Saving"
+        />
       )}
     </article>
   );
