@@ -84,7 +84,7 @@ export default function Application(props) {
   //     // console.log("test3", response.data);
   //   });
   // }, []);
-
+//you want data to be at the level and then pass it down to the child components, a child cannot modify the data, the child can call the function but should not modify the data directly. You put the function at the top level so any changes at the child com
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -96,22 +96,44 @@ export default function Application(props) {
       console.log("test6", all[2].data); // third
 
       // const [days, appointments, interviewers] = all;
+      //fetch data from the api and then store in setState
       setState((prevState) => ({
         ...prevState,
         days: all[0].data,
         appointments: all[1].data,
-        // appointments: initialAppointments,
         interviewers: all[2].data,
       }));
     });
   }, []);
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({
+      ...state,
+      appointments
+    });
+
+    return axios.put(`/api/appointments/${id}`, {interview})
+  }
+
+// state.day?
   const currentDayAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
   const eachAppointment = currentDayAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     console.log("test10", interviewers);
+    console.log("test13", interview);
 
     return (
       <Appointment
@@ -120,6 +142,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        //can pass in functions
+        bookInterview={bookInterview}
       />
     );
   });

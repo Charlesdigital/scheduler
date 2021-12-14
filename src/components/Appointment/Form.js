@@ -5,7 +5,7 @@ import Button from "components/Button";
 function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
+console.log("test14", interviewer)
   const reset = () => {
     setStudent("");
     setInterviewer(null);
@@ -25,11 +25,11 @@ function Form(props) {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
+            value={student}
             placeholder="Enter Student Name"
             onChange={(event) => {
               setStudent(event.target.value);
             }}
-            value={student}
           />
         </form>
         <InterviewerList
@@ -43,7 +43,7 @@ function Form(props) {
           <Button danger onClick={props.onCancel}>
             Cancel
           </Button>
-          <Button confirm onClick={props.onSave}>
+          <Button confirm onClick={() => props.onSave(student, interviewer)}>
             Save
           </Button>
         </section>
@@ -53,3 +53,5 @@ function Form(props) {
 }
 
 export default Form;
+//when you call a function, use an () => to delay the function being called  <Button confirm onClick={() => props.onSave(student, interviewer)}>
+//without () => when you click + button it will trigger, when you want it to be triggered on the save instead
