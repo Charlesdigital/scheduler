@@ -20,26 +20,25 @@ export function getInterview(state, interview) {
   return interviewStats;
 }
 
-export function getInterviewersForDay(state, day) {
-  const daysInterviewers = state.days.find((d) => d.name === day);
-  if (daysInterviewers === undefined) {
+export function getInterviewersForDay(state, name) {
+  const filteredDay = state.days.filter((day) => day.name === name);
+  if (!filteredDay[0]) {
     return [];
   }
-
-  const interviewersForDay = daysInterviewers.interviewers.map((id) => {
-    return state.interviewers[id];
-  });
-  return interviewersForDay;
+  const filteredInterviewers = filteredDay[0].interviewers.map(
+    (id) => state.interviewers[id]
+  );
+  return filteredInterviewers;
 }
 
-export function getDayforSpots(state, day) {
-  const daysInterviewers = state.days.find((d) => d.name === day);
-  if (daysInterviewers === undefined) {
-    return [];
-  }
+// export function getDayforSpots(state, day) {
+//   const daysInterviewers = state.days.find((d) => d.name === day);
+//   if (daysInterviewers === undefined) {
+//     return [];
+//   }
 
-  const interviewersForDay = daysInterviewers.interviewers.map((id) => {
-    return state.interviewers[id];
-  });
-  return interviewersForDay;
-}
+//   const interviewersForDay = daysInterviewers.interviewers.map((id) => {
+//     return state.interviewers[id];
+//   });
+//   return interviewersForDay;
+// }
