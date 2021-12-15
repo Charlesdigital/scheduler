@@ -12,13 +12,12 @@ import {
 } from "helpers/selectors";
 
 export default function Application(props) {
-
   const {
     setState,
     state,
     // setDay,
     bookInterview,
-    cancelInterview
+    cancelInterview,
   } = useApplicationData();
 
   const currentDayAppointments = getAppointmentsForDay(state, state.day);
@@ -68,7 +67,10 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">{eachAppointment}</section>
+      <section className="schedule">
+        {eachAppointment}
+        <Appointment time="5pm" />
+      </section>
     </main>
   );
 }
@@ -77,9 +79,9 @@ export default function Application(props) {
 
 //you want data to be at the top level and then pass it down to the child components, a child cannot modify the data, the child can call the function but should not modify the data directly. You put the function at the top level so any changes at the child component gets reflected at the parent level
 
- // const [day, setDay] = useState("Monday");
-  // const [days, setDays] = useState(initialDaysValue);
-  // const [appointments, setAppointments] = useState(initialAppointments);
+// const [day, setDay] = useState("Monday");
+// const [days, setDays] = useState(initialDaysValue);
+// const [appointments, setAppointments] = useState(initialAppointments);
 
 // const initialAppointments = [
 //   {
@@ -138,10 +140,6 @@ export default function Application(props) {
 //   },
 // ];
 
-
-
-
-
 //   const [state, setState] = useState({
 //     day: "Monday",
 //     days: [],
@@ -193,7 +191,6 @@ export default function Application(props) {
 
 //     return axios.put(`/api/appointments/${id}`, {interview})
 //   }
-
 
 // //4.
 //   function cancelInterview(id) {
