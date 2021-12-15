@@ -69,18 +69,17 @@ const [state, setState] = useState({
       [id]: appointment
     };
 
-    setState({
-      ...state,
-      appointments
-    });
+    // setState({
+    //   ...state,
+    //   appointments
+    // });
 
     return axios.delete(`/api/appointments/${id}`)
     .then((res) => {
+        //only update the UI state if deleted in the api
         setState({ ...state, appointments });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+
     }
   return { setState, state, bookInterview, cancelInterview }
 }

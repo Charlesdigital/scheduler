@@ -8,6 +8,7 @@ import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
 
+
 import useVisualMode from "hooks/useVisualMode";
 
 function Appointment(props) {
@@ -47,6 +48,14 @@ function Appointment(props) {
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
   }
+  
+//   function destroy(event) {
+//     transition(DELETING, true);
+//     props
+//      .cancelInterview(props.id)
+//      .then(() => transition(EMPTY))
+//      .catch(error => transition(ERROR_DELETE, true));
+//    }
 
   //   console.log("test2", props.interviewer);
   //if there's an interview key return show
