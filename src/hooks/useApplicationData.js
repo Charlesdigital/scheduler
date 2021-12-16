@@ -8,7 +8,6 @@ const useApplicationData = () => {
 const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
     appointments: {},
     interviewers: {},
   });
@@ -26,6 +25,7 @@ const [state, setState] = useState({
 
       // const [days, appointments, interviewers] = all;
       //fetch data from the api and then store in setState
+      //updates state for the whole object
       setState((prevState) => ({
         ...prevState,
         days: all[0].data,

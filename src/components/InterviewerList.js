@@ -1,6 +1,7 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem.js";
 import "./InterviewerList.scss";
+import PropTypes from 'prop-types';
 
 function InterviewerList(props) {
   const interviewers = props.interviewers.map((interviewer) => {
@@ -24,6 +25,9 @@ function InterviewerList(props) {
   );
 }
 
+InterviewerList.propTypes = {
+    interviewers: PropTypes.array.isRequired
+};
 export default InterviewerList;
 
 // .add("Clickable", () => (
