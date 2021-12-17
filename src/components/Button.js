@@ -16,7 +16,7 @@ export default function Button(props) {
   //   if (props.danger) {
   //     buttonClass += " button--danger";
   //   }
-  console.log(props);
+//   console.log(props);
   return (
     <button
       disabled={props.disabled}
