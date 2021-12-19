@@ -48,7 +48,7 @@ function Appointment(props) {
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
   }
-  
+
 //   function destroy(event) {
 //     transition(DELETING, true);
 //     props
@@ -80,7 +80,6 @@ function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={deleteInterview}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
 

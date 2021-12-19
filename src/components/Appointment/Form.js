@@ -11,12 +11,15 @@ function Form(props) {
     setStudent("");
     setInterviewer(null);
     props.onCancel();
+    setError("");
+
   };
 
-  const cancel = () => {
-    reset();
-    props.onCancel();
-  };
+  // const cancel = () => {
+  //   props.onCancel();
+  //   setError("");
+
+  // };
 
   function validate() {
     //remember initial student state is empty string
@@ -25,12 +28,7 @@ function Form(props) {
         return;
       }
 
-      if (interviewer === null){
-        setError("Choose an interviewer below")
-        return;
-      }
       setError("");
-
       props.onSave(student, interviewer);
   }
 
@@ -61,8 +59,8 @@ function Form(props) {
       <section className="appointment__validation">{error}</section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={props.onCancel}>
-            Cancel Save
+          <Button danger onClick={reset}>
+            Cancel
           </Button>
           <Button confirm onClick={() => validate(student, interviewer)}>
             Save
