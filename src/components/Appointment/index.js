@@ -49,28 +49,6 @@ function Appointment(props) {
       .catch(error => transition(ERROR_DELETE, true));
   }
 
-//   function destroy(event) {
-//     transition(DELETING, true);
-//     props
-//      .cancelInterview(props.id)
-//      .then(() => transition(EMPTY))
-//      .catch(error => transition(ERROR_DELETE, true));
-//    }
-
-  //   console.log("test2", props.interviewer);
-  //if there's an interview key return show
-  //   const checkInterview = function (interview) {
-  //     if (interview) {
-  //       return (
-  //         <Show
-  //           student={interview.student}
-  //           interviewer={interview.interviewer.name}
-  //         />
-  //       );
-  //     } else {
-  //       return <Empty />;
-  //     }
-  //   };
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -133,6 +111,3 @@ function Appointment(props) {
 }
 
 export default Appointment;
-//is props sending all?
-// student={interview.student} interviewer={interview.interviewer}
-//how to the name based off the id?

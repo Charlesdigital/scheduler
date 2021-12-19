@@ -6,7 +6,6 @@ function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState();
-// console.log("test14", interviewer)
   const reset = () => {
     setStudent("");
     setInterviewer(null);
@@ -15,14 +14,7 @@ function Form(props) {
 
   };
 
-  // const cancel = () => {
-  //   props.onCancel();
-  //   setError("");
-
-  // };
-
   function validate() {
-    //remember initial student state is empty string
       if(student === "") {
         setError("student name cannot be blank");
         return;
@@ -31,8 +23,6 @@ function Form(props) {
       setError("");
       props.onSave(student, interviewer);
   }
-
-
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -73,4 +63,4 @@ function Form(props) {
 
 export default Form;
 //when you call a function, use an () => to delay the function being called  <Button confirm onClick={() => props.onSave(student, interviewer)}>
-//without () => when you click + button it will trigger, when you want it to be triggered on the save instead
+//without () => when you click the + button it will trigger, when you want it to be triggered on the save button

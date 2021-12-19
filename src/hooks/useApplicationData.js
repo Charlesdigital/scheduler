@@ -19,13 +19,6 @@ const [state, setState] = useState({
       axios.get("/api/appointments"),
       axios.get("/api/interviewers"),
     ]).then((all) => {
-    //   console.log("test4", all[0].data); // first
-      console.log("test5", all[1].data); // second
-    //   console.log("test6", all[2].data); // third
-
-      // const [days, appointments, interviewers] = all;
-      //fetch data from the api and then store in setState
-      //updates state for the whole object
       setState((prevState) => ({
         ...prevState,
         days: all[0].data,
@@ -37,7 +30,6 @@ const [state, setState] = useState({
 
 //3.
   function bookInterview(id, interview) {
-    // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -91,7 +83,5 @@ const [state, setState] = useState({
   return { setState, state, bookInterview, cancelInterview }
 }
 export default useApplicationData;
-
-//...state
 
 //spots comes from days: all[0].data,
