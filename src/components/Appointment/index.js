@@ -25,7 +25,6 @@ function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  console.log("test9...", props);
 
   //when you click on save, it creates an interview object
   function save(name, interviewer) {
