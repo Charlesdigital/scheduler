@@ -23,3 +23,14 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+
+1. Axios
+2. Babel
+3. Webpack
+4. React-Hooks
+5. Node-Sass
+6. Prop-types
+7. Jest
+8. Cypress
