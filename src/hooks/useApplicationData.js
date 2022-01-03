@@ -42,7 +42,7 @@ const [state, setState] = useState({
 
     return axios.put(`/api/appointments/${id}`, {interview}).then((res) => {
         //only update the UI state if deleted in the api
-        setState(prevState => (updateSpots(prevState, appointments)));
+        setState(prevState => (updateSpots(id, prevState, appointments)));
       })
   }
 
@@ -62,18 +62,20 @@ const [state, setState] = useState({
     return axios.delete(`/api/appointments/${id}`)
     .then((res) => {
         //only update the UI state if deleted in the api
-        setState(prevState => (updateSpots(prevState, appointments, true)));
+        setState(prevState => (updateSpots(id, prevState, appointments, true)));
       })
 
     }
 // 5. Updating Spots when bookInterview or cancelInterview is called
-    function updateSpots(state, appointments, isCreate = false) {
+    function updateSpots(appointmentId, state, appointments, isCreate = false) {
     const days = state.days.map((day) => {
 
         if (state.day === day.name) {
             if(isCreate) {
                 day.spots += 1
-            } else day.spots -= 1
+            } else if (!state.appointments[appointmentId].interview) {
+              day.spots -= 1
+            }
         }
         return day
     })
