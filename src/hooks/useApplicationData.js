@@ -63,7 +63,6 @@ const [state, setState] = useState({
     .then((res) => {
         //only update the UI state if deleted in the api
         setState(prevState => (updateSpots(prevState, appointments, true)));
-        console.log("test15",state.days)
       })
 
     }
